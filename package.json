@@ -1,0 +1,14 @@
+{
+  "name": "refactoring",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon test.js",
+    "test": "echo 'fake test passed'"
+  },
+  "devDependencies": {
+    "api": "^4.4.0",
+    "nodemon": "^2.0.16"
+  }
+}
