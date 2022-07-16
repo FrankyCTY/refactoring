@@ -1,5 +1,14 @@
 const plays = require('./plays.json');
 
+function totalVolumeCredits(invoice) {
+  let volumeCredits = 0;
+  for (let perf of invoice.performances) {
+    // add volume credits
+    volumeCredits += volumeCreditsFor(perf);
+  }
+  return volumeCredits;
+}
+
 function usd(aNumber) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -45,27 +54,29 @@ function playFor(aPerformance) {
 }
 
 function statement(invoice, plays) {
-  let totalAmount = 0;
-  let volumeCredits = 0;
-
   let result = `Statement for ${invoice.customer}\n`;
 
-  // Calculate total amount for all performances
+  // print line for this order
   for (let perf of invoice.performances) {
-    // add volume credits
-    volumeCredits += volumeCreditsFor(perf);
-
-    // print line for this order
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     } seats)\n`;
-    totalAmount += amountFor(perf);
   }
 
   // Append to result string
-  result += `Amount owed is ${usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
+  result += `Amount owed is ${usd(totalAmount(invoice))}\n`;
+  result += `You earned ${totalVolumeCredits(invoice)} credits\n`;
   return result;
 }
 
 module.exports = statement;
+
+function totalAmount(invoice) {
+  let result = 0;
+
+  for (let perf of invoice.performances) {
+    result += amountFor(perf);
+  }
+
+  return result;
+}
