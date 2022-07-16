@@ -1,15 +1,12 @@
 function createStatementData(invoice, plays) {
-  const statementData = new Map();
+  const result = new Map();
 
-  statementData.set('customer', invoice.customer);
-  statementData.set(
-    'performances',
-    invoice.performances.map(enrichPerformance)
-  );
-  statementData.set('totalAmount', totalAmount(statementData));
-  statementData.set('totalVolumeCredits', totalVolumeCredits(statementData));
+  result.set('customer', invoice.customer);
+  result.set('performances', invoice.performances.map(enrichPerformance));
+  result.set('totalAmount', totalAmount(result));
+  result.set('totalVolumeCredits', totalVolumeCredits(result));
 
-  return statementData;
+  return result;
 
   function enrichPerformance(aPerformance) {
     const result = aPerformance;
