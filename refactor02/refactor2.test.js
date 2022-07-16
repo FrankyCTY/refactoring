@@ -1,6 +1,6 @@
 const statement = require('./refactor02');
-const plays = require('./plays.json');
-const invoices = require('./invoices.json');
+const plays = require('../plays.json');
+const invoices = require('../invoices.json');
 
 test('refactor02', () => {
   return expect(statement(invoices[0], plays)).toBe(`Statement for BigCo
