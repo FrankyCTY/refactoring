@@ -1,4 +1,4 @@
-const statement = require('./refactor03js');
+const statement = require('./refactor03.js');
 const plays = require('../plays.json');
 const invoices = require('../invoices.json');
 
