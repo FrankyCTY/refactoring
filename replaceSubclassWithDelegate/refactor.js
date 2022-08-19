@@ -57,7 +57,7 @@ function createBooking(show, date) {
 }
 
 function createPremiumBooking(show, date, extras) {
-  const result = new Booking(show, date, extras);
+  const result = new Booking(show, date);
   result._bePremium(extras);
   return result;
 }
